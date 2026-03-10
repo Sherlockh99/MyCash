@@ -20,4 +20,36 @@
     <string name="settings_language_ukrainian">Українська</string>
     <string name="settings_language_russian">Русский</string>
     <string name="settings_language_english">English</string>
+    
+    <!-- Common -->
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    
+    <!-- Accounts -->
+    <string name="screen_accounts">Счета</string>
+    <string name="accounts_empty">Нет счетов. Добавьте первый.</string>
+    <string name="accounts_balance_format">%.2f грн</string>
+    <string name="accounts_add_title">Новый счёт</string>
+    <string name="accounts_edit_title">Редактировать счёт</string>
+    <string name="accounts_delete_title">Удалить счёт?</string>
+    <string name="accounts_delete_message">Удалить счёт \"%1$s\"? Все операции будут потеряны.</string>
+    <string name="accounts_name">Название</string>
+    <string name="accounts_type">Тип</string>
+    <string name="accounts_type_hint">например: карта, наличные</string>
+    <string name="accounts_initial_balance">Начальный баланс</string>
+    
+    <!-- Categories -->
+    <string name="screen_categories">Категории</string>
+    <string name="categories_type_income">Доходы</string>
+    <string name="categories_type_expense">Расходы</string>
+    <string name="categories_empty">Нет категорий. Добавьте первую.</string>
+    <string name="categories_add_title">Новая категория</string>
+    <string name="categories_edit_title">Редактировать категорию</string>
+    <string name="categories_add_subcategory_title">Подкатегория в \"%1$s\"</string>
+    <string name="categories_edit_subcategory_title">Редактировать подкатегорию</string>
+    <string name="categories_delete_category_title">Удалить категорию?</string>
+    <string name="categories_delete_subcategory_title">Удалить подкатегорию?</string>
+    <string name="categories_delete_message">Удалить \"%1$s\"?</string>
+    <string name="categories_name">Название</string>
 </resources>

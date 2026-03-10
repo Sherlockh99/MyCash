@@ -20,4 +20,36 @@
     <string name="settings_language_ukrainian">Українська</string>
     <string name="settings_language_russian">Русский</string>
     <string name="settings_language_english">English</string>
+    
+    <!-- Common -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    
+    <!-- Accounts -->
+    <string name="screen_accounts">Accounts</string>
+    <string name="accounts_empty">No accounts. Add the first one.</string>
+    <string name="accounts_balance_format">%.2f UAH</string>
+    <string name="accounts_add_title">New account</string>
+    <string name="accounts_edit_title">Edit account</string>
+    <string name="accounts_delete_title">Delete account?</string>
+    <string name="accounts_delete_message">Delete account \"%1$s\"? All transactions will be lost.</string>
+    <string name="accounts_name">Name</string>
+    <string name="accounts_type">Type</string>
+    <string name="accounts_type_hint">e.g. card, cash</string>
+    <string name="accounts_initial_balance">Initial balance</string>
+    
+    <!-- Categories -->
+    <string name="screen_categories">Categories</string>
+    <string name="categories_type_income">Income</string>
+    <string name="categories_type_expense">Expense</string>
+    <string name="categories_empty">No categories. Add the first one.</string>
+    <string name="categories_add_title">New category</string>
+    <string name="categories_edit_title">Edit category</string>
+    <string name="categories_add_subcategory_title">Subcategory in \"%1$s\"</string>
+    <string name="categories_edit_subcategory_title">Edit subcategory</string>
+    <string name="categories_delete_category_title">Delete category?</string>
+    <string name="categories_delete_subcategory_title">Delete subcategory?</string>
+    <string name="categories_delete_message">Delete \"%1$s\"?</string>
+    <string name="categories_name">Name</string>
 </resources>

@@ -23,6 +23,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.sh.mycash.R
+import com.sh.mycash.ui.screens.accounts.AccountsScreen
+import com.sh.mycash.ui.screens.categories.CategoriesScreen
 import com.sh.mycash.ui.screens.dashboard.DashboardScreen
 import com.sh.mycash.ui.screens.reports.ReportsScreen
 import com.sh.mycash.ui.screens.settings.SettingsScreen
@@ -45,6 +47,11 @@ val bottomNavItems = listOf(
     NavItem.Reports,
     NavItem.Settings
 )
+
+object NavRoutes {
+    const val ACCOUNTS = "accounts"
+    const val CATEGORIES = "categories"
+}
 
 @Composable
 fun MyCashNavGraph(
@@ -82,7 +89,16 @@ fun MyCashNavGraph(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(NavItem.Dashboard.route) {
-                DashboardScreen()
+                DashboardScreen(
+                    onNavigateToAccounts = { navController.navigate(NavRoutes.ACCOUNTS) },
+                    onNavigateToCategories = { navController.navigate(NavRoutes.CATEGORIES) }
+                )
+            }
+            composable(NavRoutes.ACCOUNTS) {
+                AccountsScreen(onBackClick = { navController.popBackStack() })
+            }
+            composable(NavRoutes.CATEGORIES) {
+                CategoriesScreen(onBackClick = { navController.popBackStack() })
             }
             composable(NavItem.Transactions.route) {
                 TransactionsScreen()

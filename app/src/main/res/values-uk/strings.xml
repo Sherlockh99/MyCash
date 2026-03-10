@@ -20,4 +20,36 @@
     <string name="settings_language_ukrainian">Українська</string>
     <string name="settings_language_russian">Русский</string>
     <string name="settings_language_english">English</string>
+    
+    <!-- Common -->
+    <string name="save">Зберегти</string>
+    <string name="cancel">Скасувати</string>
+    <string name="delete">Видалити</string>
+    
+    <!-- Accounts -->
+    <string name="screen_accounts">Рахунки</string>
+    <string name="accounts_empty">Немає рахунків. Додайте перший.</string>
+    <string name="accounts_balance_format">%.2f грн</string>
+    <string name="accounts_add_title">Новий рахунок</string>
+    <string name="accounts_edit_title">Редагувати рахунок</string>
+    <string name="accounts_delete_title">Видалити рахунок?</string>
+    <string name="accounts_delete_message">Видалити рахунок \"%1$s\"? Всі операції будуть втрачені.</string>
+    <string name="accounts_name">Назва</string>
+    <string name="accounts_type">Тип</string>
+    <string name="accounts_type_hint">наприклад: карта, готівка</string>
+    <string name="accounts_initial_balance">Початковий баланс</string>
+    
+    <!-- Categories -->
+    <string name="screen_categories">Категорії</string>
+    <string name="categories_type_income">Доходи</string>
+    <string name="categories_type_expense">Витрати</string>
+    <string name="categories_empty">Немає категорій. Додайте першу.</string>
+    <string name="categories_add_title">Нова категорія</string>
+    <string name="categories_edit_title">Редагувати категорію</string>
+    <string name="categories_add_subcategory_title">Підкатегорія до \"%1$s\"</string>
+    <string name="categories_edit_subcategory_title">Редагувати підкатегорію</string>
+    <string name="categories_delete_category_title">Видалити категорію?</string>
+    <string name="categories_delete_subcategory_title">Видалити підкатегорію?</string>
+    <string name="categories_delete_message">Видалити \"%1$s\"?</string>
+    <string name="categories_name">Назва</string>
 </resources>

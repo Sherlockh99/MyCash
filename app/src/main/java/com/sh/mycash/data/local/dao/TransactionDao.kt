@@ -41,4 +41,19 @@ interface TransactionDao {
 
     @Delete
     suspend fun delete(transaction: TransactionEntity)
+
+    @Query(
+        """
+        SELECT COALESCE(SUM(
+            CASE 
+                WHEN type = 'INCOME' AND accountId = :accountId THEN amount
+                WHEN type = 'EXPENSE' AND accountId = :accountId THEN -amount
+                WHEN type = 'TRANSFER' AND accountId = :accountId THEN -amount
+                WHEN type = 'TRANSFER' AND targetAccountId = :accountId THEN amount
+                ELSE 0
+            END
+        ), 0) FROM transactions
+        """
+    )
+    suspend fun getBalanceDelta(accountId: Long): Double
 }
