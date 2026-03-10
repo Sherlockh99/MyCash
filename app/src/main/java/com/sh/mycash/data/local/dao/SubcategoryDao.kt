@@ -29,4 +29,7 @@ interface SubcategoryDao {
 
     @Delete
     suspend fun delete(subcategory: SubcategoryEntity)
+
+    @Query("DELETE FROM subcategories")
+    suspend fun deleteAll()
 }

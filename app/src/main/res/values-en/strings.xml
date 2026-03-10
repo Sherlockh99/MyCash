@@ -22,6 +22,7 @@
     <string name="settings_language_ukrainian">Українська</string>
     <string name="settings_language_russian">Русский</string>
     <string name="settings_language_english">English</string>
+    <string name="settings_backup">Backup</string>
     
     <!-- Common -->
     <string name="save">Save</string>
@@ -97,4 +98,16 @@
     <string name="reports_total_expenses">Total expenses: %.2f UAH</string>
     <string name="reports_total_income">Total income: %.2f UAH</string>
     <string name="reports_no_data">No data for selected period</string>
+    
+    <!-- Backup -->
+    <string name="backup_export">Export</string>
+    <string name="backup_import">Import</string>
+    <string name="backup_auto">Automatic backup</string>
+    <string name="backup_export_success">Backup saved</string>
+    <string name="backup_export_error">Export error: %1$s</string>
+    <string name="backup_import_success">Data restored</string>
+    <string name="backup_import_error">Import error: %1$s</string>
+    <string name="backup_import_confirm_title">Import data</string>
+    <string name="backup_import_confirm_message">All current data will be replaced with imported data. Continue?</string>
+    <string name="backup_import_confirm">Replace</string>
 </resources>

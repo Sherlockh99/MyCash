@@ -22,6 +22,7 @@
     <string name="settings_language_ukrainian">Українська</string>
     <string name="settings_language_russian">Русский</string>
     <string name="settings_language_english">English</string>
+    <string name="settings_backup">Резервное копирование</string>
     
     <!-- Common -->
     <string name="save">Сохранить</string>
@@ -97,4 +98,16 @@
     <string name="reports_total_expenses">Всего расходов: %.2f грн</string>
     <string name="reports_total_income">Всего доходов: %.2f грн</string>
     <string name="reports_no_data">Нет данных за выбранный период</string>
+    
+    <!-- Backup -->
+    <string name="backup_export">Экспорт</string>
+    <string name="backup_import">Импорт</string>
+    <string name="backup_auto">Автоматический бекап</string>
+    <string name="backup_export_success">Резервная копия сохранена</string>
+    <string name="backup_export_error">Ошибка экспорта: %1$s</string>
+    <string name="backup_import_success">Данные восстановлены</string>
+    <string name="backup_import_error">Ошибка импорта: %1$s</string>
+    <string name="backup_import_confirm_title">Импорт данных</string>
+    <string name="backup_import_confirm_message">Все текущие данные будут заменены импортированными. Продолжить?</string>
+    <string name="backup_import_confirm">Заменить</string>
 </resources>

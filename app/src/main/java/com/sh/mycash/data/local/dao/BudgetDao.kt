@@ -15,6 +15,9 @@ interface BudgetDao {
     @Query("SELECT * FROM budgets WHERE year = :year AND month = :month")
     fun getByMonth(year: Int, month: Int): Flow<List<BudgetEntity>>
 
+    @Query("SELECT * FROM budgets")
+    suspend fun getAllSync(): List<BudgetEntity>
+
     @Query("SELECT * FROM budgets WHERE id = :id")
     suspend fun getById(id: Long): BudgetEntity?
 
@@ -26,4 +29,7 @@ interface BudgetDao {
 
     @Delete
     suspend fun delete(budget: BudgetEntity)
+
+    @Query("DELETE FROM budgets")
+    suspend fun deleteAll()
 }

@@ -21,6 +21,7 @@ enum class AppLanguage(val code: String) {
 object PreferenceKeys {
     val LANGUAGE = stringPreferencesKey("language")
     val DARK_THEME = booleanPreferencesKey("dark_theme")
+    val AUTO_BACKUP_ENABLED = booleanPreferencesKey("auto_backup_enabled")
 }
 
 class UserPreferences(private val context: Context) {
@@ -33,6 +34,10 @@ class UserPreferences(private val context: Context) {
 
     val darkTheme: Flow<Boolean?> = context.dataStore.data.map { preferences ->
         preferences[PreferenceKeys.DARK_THEME]
+    }
+
+    val autoBackupEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[PreferenceKeys.AUTO_BACKUP_ENABLED] ?: false
     }
 
     suspend fun setLanguage(language: AppLanguage) {
@@ -48,6 +53,12 @@ class UserPreferences(private val context: Context) {
             } else {
                 preferences.remove(PreferenceKeys.DARK_THEME)
             }
+        }
+    }
+
+    suspend fun setAutoBackupEnabled(enabled: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferenceKeys.AUTO_BACKUP_ENABLED] = enabled
         }
     }
 }
