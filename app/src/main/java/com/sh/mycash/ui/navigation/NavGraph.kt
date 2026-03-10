@@ -3,6 +3,7 @@ package com.sh.mycash.ui.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Assessment
+import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ReceiptLong
 import androidx.compose.material.icons.filled.Settings
@@ -26,6 +27,7 @@ import com.sh.mycash.R
 import com.sh.mycash.ui.screens.accounts.AccountsScreen
 import com.sh.mycash.ui.screens.categories.CategoriesScreen
 import com.sh.mycash.ui.screens.dashboard.DashboardScreen
+import com.sh.mycash.ui.screens.planning.PlanningScreen
 import com.sh.mycash.ui.screens.reports.ReportsScreen
 import com.sh.mycash.ui.screens.settings.SettingsScreen
 import com.sh.mycash.ui.screens.transactions.TransactionsScreen
@@ -37,6 +39,7 @@ sealed class NavItem(
 ) {
     data object Dashboard : NavItem("dashboard", R.string.tab_dashboard, Icons.Default.Home)
     data object Transactions : NavItem("transactions", R.string.tab_transactions, Icons.Default.ReceiptLong)
+    data object Planning : NavItem("planning", R.string.tab_planning, Icons.Default.CalendarMonth)
     data object Reports : NavItem("reports", R.string.tab_reports, Icons.Default.Assessment)
     data object Settings : NavItem("settings", R.string.tab_settings, Icons.Default.Settings)
 }
@@ -44,6 +47,7 @@ sealed class NavItem(
 val bottomNavItems = listOf(
     NavItem.Dashboard,
     NavItem.Transactions,
+    NavItem.Planning,
     NavItem.Reports,
     NavItem.Settings
 )
@@ -102,6 +106,9 @@ fun MyCashNavGraph(
             }
             composable(NavItem.Transactions.route) {
                 TransactionsScreen()
+            }
+            composable(NavItem.Planning.route) {
+                PlanningScreen()
             }
             composable(NavItem.Reports.route) {
                 ReportsScreen()

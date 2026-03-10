@@ -5,12 +5,14 @@
     <!-- Tabs -->
     <string name="tab_dashboard">Головна</string>
     <string name="tab_transactions">Операції</string>
+    <string name="tab_planning">Планування</string>
     <string name="tab_reports">Звіти</string>
     <string name="tab_settings">Налаштування</string>
     
     <!-- Screens -->
     <string name="screen_dashboard">Головна</string>
     <string name="screen_transactions">Операції</string>
+    <string name="screen_planning">Планування</string>
     <string name="screen_reports">Звіти</string>
     <string name="screen_settings">Налаштування</string>
     
@@ -71,4 +73,28 @@
     <string name="transactions_type">Тип операції</string>
     <string name="transactions_date">Дата</string>
     <string name="transactions_time">Час</string>
+    
+    <!-- Planning -->
+    <string name="planning_budgets">Бюджети</string>
+    <string name="planning_recurring">Регулярні операції</string>
+    <string name="planning_empty_budgets">Немає бюджетів на цей місяць. Додайте перший.</string>
+    <string name="planning_empty_recurring">Немає регулярних операцій. Додайте першу.</string>
+    <string name="planning_add_budget">Новий бюджет</string>
+    <string name="planning_edit_budget">Редагувати бюджет</string>
+    <string name="planning_add_recurring">Нова регулярна операція</string>
+    <string name="planning_edit_recurring">Редагувати регулярну операцію</string>
+    <string name="planning_delete_budget_title">Видалити бюджет?</string>
+    <string name="planning_delete_budget_message">Видалити бюджет для \"%1$s\"?</string>
+    <string name="planning_delete_recurring_title">Видалити регулярну операцію?</string>
+    <string name="planning_delete_recurring_message">Видалити цю регулярну операцію?</string>
+    <string name="planning_day_of_month">День місяця</string>
+    <string name="planning_spent">Витрачено: %.2f грн</string>
+    <string name="planning_of">з %.2f грн</string>
+    
+    <!-- Reports -->
+    <string name="reports_date_range">Період</string>
+    <string name="reports_expenses_by_category">Витрати за категоріями</string>
+    <string name="reports_total_expenses">Всього витрат: %.2f грн</string>
+    <string name="reports_total_income">Всього доходів: %.2f грн</string>
+    <string name="reports_no_data">Немає даних за обраний період</string>
 </resources>

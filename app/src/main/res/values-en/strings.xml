@@ -5,12 +5,14 @@
     <!-- Tabs -->
     <string name="tab_dashboard">Dashboard</string>
     <string name="tab_transactions">Transactions</string>
+    <string name="tab_planning">Planning</string>
     <string name="tab_reports">Reports</string>
     <string name="tab_settings">Settings</string>
     
     <!-- Screens -->
     <string name="screen_dashboard">Dashboard</string>
     <string name="screen_transactions">Transactions</string>
+    <string name="screen_planning">Planning</string>
     <string name="screen_reports">Reports</string>
     <string name="screen_settings">Settings</string>
     
@@ -71,4 +73,28 @@
     <string name="transactions_type">Transaction type</string>
     <string name="transactions_date">Date</string>
     <string name="transactions_time">Time</string>
+    
+    <!-- Planning -->
+    <string name="planning_budgets">Budgets</string>
+    <string name="planning_recurring">Recurring transactions</string>
+    <string name="planning_empty_budgets">No budgets for this month. Add the first one.</string>
+    <string name="planning_empty_recurring">No recurring transactions. Add the first one.</string>
+    <string name="planning_add_budget">New budget</string>
+    <string name="planning_edit_budget">Edit budget</string>
+    <string name="planning_add_recurring">New recurring transaction</string>
+    <string name="planning_edit_recurring">Edit recurring transaction</string>
+    <string name="planning_delete_budget_title">Delete budget?</string>
+    <string name="planning_delete_budget_message">Delete budget for \"%1$s\"?</string>
+    <string name="planning_delete_recurring_title">Delete recurring transaction?</string>
+    <string name="planning_delete_recurring_message">Delete this recurring transaction?</string>
+    <string name="planning_day_of_month">Day of month</string>
+    <string name="planning_spent">Spent: %.2f UAH</string>
+    <string name="planning_of">of %.2f UAH</string>
+    
+    <!-- Reports -->
+    <string name="reports_date_range">Period</string>
+    <string name="reports_expenses_by_category">Expenses by category</string>
+    <string name="reports_total_expenses">Total expenses: %.2f UAH</string>
+    <string name="reports_total_income">Total income: %.2f UAH</string>
+    <string name="reports_no_data">No data for selected period</string>
 </resources>

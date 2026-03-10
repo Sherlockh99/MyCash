@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.sh.mycash.data.local.entity.SubcategoryExpenseSummary
 import com.sh.mycash.data.local.entity.TransactionEntity
 import com.sh.mycash.data.local.entity.TransactionType
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +33,32 @@ interface TransactionDao {
         ORDER BY date DESC"""
     )
     fun getExpensesByDateRange(startDate: Long, endDate: Long): Flow<List<TransactionEntity>>
+
+    @Query(
+        """
+        SELECT subcategoryId, SUM(amount) as total FROM transactions 
+        WHERE type = 'EXPENSE' AND subcategoryId IS NOT NULL 
+        AND date >= :startDate AND date <= :endDate
+        GROUP BY subcategoryId
+        """
+    )
+    fun getExpensesBySubcategory(startDate: Long, endDate: Long): Flow<List<SubcategoryExpenseSummary>>
+
+    @Query(
+        """
+        SELECT COALESCE(SUM(amount), 0) FROM transactions 
+        WHERE type = 'EXPENSE' AND date >= :startDate AND date <= :endDate
+        """
+    )
+    suspend fun getTotalExpenses(startDate: Long, endDate: Long): Double
+
+    @Query(
+        """
+        SELECT COALESCE(SUM(amount), 0) FROM transactions 
+        WHERE type = 'INCOME' AND date >= :startDate AND date <= :endDate
+        """
+    )
+    suspend fun getTotalIncome(startDate: Long, endDate: Long): Double
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(transaction: TransactionEntity): Long

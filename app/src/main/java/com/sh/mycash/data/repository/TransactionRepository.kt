@@ -3,6 +3,7 @@ package com.sh.mycash.data.repository
 import com.sh.mycash.data.local.dao.AccountDao
 import com.sh.mycash.data.local.dao.SubcategoryDao
 import com.sh.mycash.data.local.dao.TransactionDao
+import com.sh.mycash.data.local.entity.SubcategoryExpenseSummary
 import com.sh.mycash.data.local.entity.TransactionEntity
 import com.sh.mycash.data.local.entity.TransactionType
 import kotlinx.coroutines.flow.Flow
@@ -42,7 +43,33 @@ class TransactionRepository(
     suspend fun delete(transaction: TransactionEntity) = transactionDao.delete(transaction)
 
     suspend fun getById(id: Long) = transactionDao.getById(id)
+
+    fun getExpensesBySubcategoryWithNames(startDate: Long, endDate: Long): Flow<List<CategoryExpenseItem>> {
+        return combine(
+            transactionDao.getExpensesBySubcategory(startDate, endDate),
+            subcategoryDao.getAll()
+        ) { summaries, subcategories ->
+            summaries.map { s ->
+                val sub = subcategories.find { it.id == s.subcategoryId }
+                CategoryExpenseItem(
+                    subcategoryName = sub?.name ?: "-",
+                    amount = s.total
+                )
+            }.sortedByDescending { it.amount }
+        }
+    }
+
+    suspend fun getTotalExpenses(startDate: Long, endDate: Long) =
+        transactionDao.getTotalExpenses(startDate, endDate)
+
+    suspend fun getTotalIncome(startDate: Long, endDate: Long) =
+        transactionDao.getTotalIncome(startDate, endDate)
 }
+
+data class CategoryExpenseItem(
+    val subcategoryName: String,
+    val amount: Double
+)
 
 data class TransactionWithDetails(
     val transaction: TransactionEntity,
