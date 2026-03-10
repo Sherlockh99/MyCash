@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Cash</string>
+    
+    <!-- Tabs -->
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_transactions">Transactions</string>
+    <string name="tab_reports">Reports</string>
+    <string name="tab_settings">Settings</string>
+    
+    <!-- Screens -->
+    <string name="screen_dashboard">Dashboard</string>
+    <string name="screen_transactions">Transactions</string>
+    <string name="screen_reports">Reports</string>
+    <string name="screen_settings">Settings</string>
+    
+    <!-- Settings -->
+    <string name="settings_language">Language</string>
+    <string name="settings_dark_theme">Dark theme</string>
+    <string name="settings_language_ukrainian">Українська</string>
+    <string name="settings_language_russian">Русский</string>
+    <string name="settings_language_english">English</string>
+</resources>
