@@ -52,4 +52,23 @@
     <string name="categories_delete_subcategory_title">Delete subcategory?</string>
     <string name="categories_delete_message">Delete \"%1$s\"?</string>
     <string name="categories_name">Name</string>
+    
+    <!-- Transactions -->
+    <string name="transactions_empty">No transactions. Add the first one.</string>
+    <string name="transactions_add_title">New transaction</string>
+    <string name="transactions_edit_title">Edit transaction</string>
+    <string name="transactions_delete_title">Delete transaction?</string>
+    <string name="transactions_delete_message">The transaction will be permanently deleted.</string>
+    <string name="transaction_type_income">Income</string>
+    <string name="transaction_type_expense">Expense</string>
+    <string name="transaction_type_transfer">Transfer</string>
+    <string name="transactions_amount">Amount</string>
+    <string name="transactions_account">Account</string>
+    <string name="transactions_from_account">From account</string>
+    <string name="transactions_to_account">To account</string>
+    <string name="transactions_subcategory">Category</string>
+    <string name="transactions_comment">Comment</string>
+    <string name="transactions_type">Transaction type</string>
+    <string name="transactions_date">Date</string>
+    <string name="transactions_time">Time</string>
 </resources>

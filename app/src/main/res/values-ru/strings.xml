@@ -52,4 +52,23 @@
     <string name="categories_delete_subcategory_title">Удалить подкатегорию?</string>
     <string name="categories_delete_message">Удалить \"%1$s\"?</string>
     <string name="categories_name">Название</string>
+    
+    <!-- Transactions -->
+    <string name="transactions_empty">Нет операций. Добавьте первую.</string>
+    <string name="transactions_add_title">Новая операция</string>
+    <string name="transactions_edit_title">Редактировать операцию</string>
+    <string name="transactions_delete_title">Удалить операцию?</string>
+    <string name="transactions_delete_message">Операция будет удалена безвозвратно.</string>
+    <string name="transaction_type_income">Доход</string>
+    <string name="transaction_type_expense">Расход</string>
+    <string name="transaction_type_transfer">Перевод</string>
+    <string name="transactions_amount">Сумма</string>
+    <string name="transactions_account">Счёт</string>
+    <string name="transactions_from_account">Со счёта</string>
+    <string name="transactions_to_account">На счёт</string>
+    <string name="transactions_subcategory">Категория</string>
+    <string name="transactions_comment">Комментарий</string>
+    <string name="transactions_type">Тип операции</string>
+    <string name="transactions_date">Дата</string>
+    <string name="transactions_time">Время</string>
 </resources>

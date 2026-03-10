@@ -52,4 +52,23 @@
     <string name="categories_delete_subcategory_title">Видалити підкатегорію?</string>
     <string name="categories_delete_message">Видалити \"%1$s\"?</string>
     <string name="categories_name">Назва</string>
+    
+    <!-- Transactions -->
+    <string name="transactions_empty">Немає операцій. Додайте першу.</string>
+    <string name="transactions_add_title">Нова операція</string>
+    <string name="transactions_edit_title">Редагувати операцію</string>
+    <string name="transactions_delete_title">Видалити операцію?</string>
+    <string name="transactions_delete_message">Операція буде видалена безповоротно.</string>
+    <string name="transaction_type_income">Дохід</string>
+    <string name="transaction_type_expense">Витрата</string>
+    <string name="transaction_type_transfer">Переказ</string>
+    <string name="transactions_amount">Сума</string>
+    <string name="transactions_account">Рахунок</string>
+    <string name="transactions_from_account">З рахунку</string>
+    <string name="transactions_to_account">На рахунок</string>
+    <string name="transactions_subcategory">Категорія</string>
+    <string name="transactions_comment">Коментар</string>
+    <string name="transactions_type">Тип операції</string>
+    <string name="transactions_date">Дата</string>
+    <string name="transactions_time">Час</string>
 </resources>
