@@ -207,6 +207,7 @@ private fun AccountEditDialog(
     var name by remember(state) { mutableStateOf(state.name) }
     var type by remember(state) { mutableStateOf(state.type) }
     var initialBalance by remember(state) { mutableStateOf(state.initialBalance.toString()) }
+    var creditLimit by remember(state) { mutableStateOf(state.creditLimit?.toString() ?: "") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -235,8 +236,17 @@ private fun AccountEditDialog(
                 )
                 OutlinedTextField(
                     value = initialBalance,
-                    onValueChange = { if (it.isEmpty() || it.matches(Regex("^\\d*\\.?\\d*$"))) initialBalance = it },
+                    onValueChange = { if (it.isEmpty() || it.matches(Regex("^[-]?\\d*\\.?\\d*$"))) initialBalance = it },
                     label = { Text(stringResource(R.string.accounts_initial_balance)) },
+                    placeholder = { Text(stringResource(R.string.accounts_initial_balance_hint)) },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = creditLimit,
+                    onValueChange = { if (it.isEmpty() || it.matches(Regex("^\\d*\\.?\\d*$"))) creditLimit = it },
+                    label = { Text(stringResource(R.string.accounts_credit_limit)) },
+                    placeholder = { Text(stringResource(R.string.accounts_credit_limit_hint)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -246,7 +256,8 @@ private fun AccountEditDialog(
             TextButton(
                 onClick = {
                     val balance = initialBalance.toDoubleOrNull() ?: 0.0
-                    onSave(state.copy(name = name, type = type, initialBalance = balance))
+                    val limit = creditLimit.toDoubleOrNull()?.takeIf { it > 0 }
+                    onSave(state.copy(name = name, type = type, initialBalance = balance, creditLimit = limit))
                 }
             ) {
                 Text(stringResource(R.string.save))

@@ -41,6 +41,11 @@
     <string name="accounts_type">Type</string>
     <string name="accounts_type_hint">e.g. card, cash</string>
     <string name="accounts_initial_balance">Initial balance</string>
+    <string name="accounts_initial_balance_hint">0 for new card</string>
+    <string name="accounts_credit_limit">Credit limit</string>
+    <string name="accounts_credit_limit_hint">Empty = regular account</string>
+    <string name="accounts_debt_format">Debt: %.2f UAH</string>
+    <string name="accounts_available_format">Available: %.2f UAH</string>
     
     <!-- Categories -->
     <string name="screen_categories">Categories</string>

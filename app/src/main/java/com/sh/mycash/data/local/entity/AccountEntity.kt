@@ -10,5 +10,7 @@ data class AccountEntity(
     val name: String,
     val type: String,
     val initialBalance: Double = 0.0,
+    /** Credit limit in currency units. If > 0, account is treated as a credit card. */
+    val creditLimit: Double? = null,
     val createdAt: Long
 )

@@ -31,7 +31,8 @@ class AccountsViewModel(
             id = null,
             name = "",
             type = "",
-            initialBalance = 0.0
+            initialBalance = 0.0,
+            creditLimit = null
         )
     }
 
@@ -40,7 +41,8 @@ class AccountsViewModel(
             id = account.account.id,
             name = account.account.name,
             type = account.account.type,
-            initialBalance = account.account.initialBalance
+            initialBalance = account.account.initialBalance,
+            creditLimit = account.account.creditLimit
         )
     }
 
@@ -56,6 +58,7 @@ class AccountsViewModel(
                 name = state.name.trim(),
                 type = state.type.trim().ifBlank { "-" },
                 initialBalance = state.initialBalance,
+                creditLimit = state.creditLimit?.takeIf { it > 0 },
                 createdAt = state.id?.let { repository.getAccountById(it)?.createdAt } ?: System.currentTimeMillis()
             )
             if (state.id != null) {
@@ -87,7 +90,8 @@ data class AccountEditState(
     val id: Long?,
     val name: String,
     val type: String,
-    val initialBalance: Double
+    val initialBalance: Double,
+    val creditLimit: Double?
 )
 
 class AccountsViewModelFactory(

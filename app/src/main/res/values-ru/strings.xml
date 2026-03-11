@@ -41,6 +41,11 @@
     <string name="accounts_type">Тип</string>
     <string name="accounts_type_hint">например: карта, наличные</string>
     <string name="accounts_initial_balance">Начальный баланс</string>
+    <string name="accounts_initial_balance_hint">0 для новой карты</string>
+    <string name="accounts_credit_limit">Кредитный лимит</string>
+    <string name="accounts_credit_limit_hint">Пусто = обычный счёт</string>
+    <string name="accounts_debt_format">Долг: %.2f грн</string>
+    <string name="accounts_available_format">Доступно: %.2f грн</string>
     
     <!-- Categories -->
     <string name="screen_categories">Категории</string>
