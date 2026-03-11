@@ -100,6 +100,8 @@
     <!-- Reports -->
     <string name="reports_date_range">Период</string>
     <string name="reports_expenses_by_category">Расходы по категориям</string>
+    <string name="reports_total_balance">Баланс:</string>
+    <string name="reports_currency">грн</string>
     <string name="reports_total_expenses">Всего расходов: %.2f грн</string>
     <string name="reports_total_income">Всего доходов: %.2f грн</string>
     <string name="reports_no_data">Нет данных за выбранный период</string>

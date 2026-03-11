@@ -30,12 +30,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import java.text.NumberFormat
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sh.mycash.MyCashApplication
 import com.sh.mycash.R
+import com.sh.mycash.data.repository.AccountRepository
 import com.sh.mycash.data.repository.CategoryExpenseItem
 import com.sh.mycash.data.repository.TransactionRepository
 
@@ -48,6 +51,10 @@ fun ReportsScreen(
                 (LocalContext.current.applicationContext as MyCashApplication).database.transactionDao(),
                 (LocalContext.current.applicationContext as MyCashApplication).database.accountDao(),
                 (LocalContext.current.applicationContext as MyCashApplication).database.subcategoryDao()
+            ),
+            AccountRepository(
+                (LocalContext.current.applicationContext as MyCashApplication).database.accountDao(),
+                (LocalContext.current.applicationContext as MyCashApplication).database.transactionDao()
             )
         )
     )
@@ -55,6 +62,7 @@ fun ReportsScreen(
     val expensesByCategory by viewModel.expensesByCategory.collectAsState()
     val totalExpenses by viewModel.totalExpenses.collectAsState()
     val totalIncome by viewModel.totalIncome.collectAsState()
+    val totalBalanceWithCredit by viewModel.totalBalanceWithCredit.collectAsState()
     val selectedYear by viewModel.selectedYear.collectAsState()
     val selectedMonth by viewModel.selectedMonth.collectAsState()
 
@@ -102,15 +110,26 @@ fun ReportsScreen(
                 )
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
+                    val balanceFormat = NumberFormat.getNumberInstance(LocalConfiguration.current.locales[0]).apply {
+                        minimumFractionDigits = 2
+                        maximumFractionDigits = 2
+                    }
+                    Text(
+                        text = stringResource(R.string.reports_total_balance) + " " + balanceFormat.format(totalBalanceWithCredit) + " " + stringResource(R.string.reports_currency),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = if (totalBalanceWithCredit >= 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = stringResource(R.string.reports_total_income, totalIncome),
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = stringResource(R.string.reports_total_expenses, totalExpenses),
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.error
                     )
                 }

@@ -100,6 +100,8 @@
     <!-- Reports -->
     <string name="reports_date_range">Period</string>
     <string name="reports_expenses_by_category">Expenses by category</string>
+    <string name="reports_total_balance">Balance:</string>
+    <string name="reports_currency">UAH</string>
     <string name="reports_total_expenses">Total expenses: %.2f UAH</string>
     <string name="reports_total_income">Total income: %.2f UAH</string>
     <string name="reports_no_data">No data for selected period</string>

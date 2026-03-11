@@ -56,6 +56,14 @@ class AccountRepository(
     suspend fun deleteAccount(account: AccountEntity) = accountDao.delete(account)
 
     suspend fun getAccountById(id: Long) = accountDao.getById(id)
+
+    /** Total balance across all accounts. For credit cards: balance - creditLimit. */
+    fun getTotalBalanceWithCredit(): Flow<Double> = getAllWithBalance().map { accounts ->
+        accounts.sumOf { acc ->
+            val limit = acc.creditLimit ?: 0.0
+            if (limit > 0) acc.balance - limit else acc.balance
+        }
+    }
 }
 
 data class AccountWithBalance(

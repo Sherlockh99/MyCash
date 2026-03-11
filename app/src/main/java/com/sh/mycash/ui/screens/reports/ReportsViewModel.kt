@@ -3,6 +3,7 @@ package com.sh.mycash.ui.screens.reports
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.sh.mycash.data.repository.AccountRepository
 import com.sh.mycash.data.repository.CategoryExpenseItem
 import com.sh.mycash.data.repository.TransactionRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,8 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class ReportsViewModel(
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val accountRepository: AccountRepository
 ) : ViewModel() {
 
     private val cal = Calendar.getInstance()
@@ -41,6 +43,9 @@ class ReportsViewModel(
 
     private val _totalIncome = MutableStateFlow(0.0)
     val totalIncome: StateFlow<Double> = _totalIncome.asStateFlow()
+
+    val totalBalanceWithCredit: StateFlow<Double> = accountRepository.getTotalBalanceWithCredit()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0.0)
 
     init {
         refreshTotals()
@@ -92,10 +97,11 @@ class ReportsViewModel(
 }
 
 class ReportsViewModelFactory(
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val accountRepository: AccountRepository
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return ReportsViewModel(transactionRepository) as T
+        return ReportsViewModel(transactionRepository, accountRepository) as T
     }
 }
