@@ -180,6 +180,7 @@ private fun TransactionCard(
         TransactionType.EXPENSE -> transactionWithDetails.subcategoryName ?: "-"
         TransactionType.TRANSFER -> "${transactionWithDetails.accountName} → ${transactionWithDetails.targetAccountName ?: "-"}"
     }
+    val showAccount = t.type == TransactionType.INCOME || t.type == TransactionType.EXPENSE
     val dateStr = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         .format(Date(t.date))
 
@@ -211,6 +212,13 @@ private fun TransactionCard(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                if (showAccount) {
+                    Text(
+                        text = transactionWithDetails.accountName,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
                 Text(
                     text = dateStr,
                     style = MaterialTheme.typography.bodySmall,
