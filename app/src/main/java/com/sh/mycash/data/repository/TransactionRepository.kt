@@ -52,10 +52,35 @@ class TransactionRepository(
             summaries.map { s ->
                 val sub = subcategories.find { it.id == s.subcategoryId }
                 CategoryExpenseItem(
+                    subcategoryId = s.subcategoryId,
                     subcategoryName = sub?.name ?: "-",
                     amount = s.total
                 )
             }.sortedByDescending { it.amount }
+        }
+    }
+
+    fun getExpensesWithDetailsBySubcategoryAndDateRange(
+        subcategoryId: Long,
+        startDate: Long,
+        endDate: Long
+    ): Flow<List<TransactionWithDetails>> {
+        return combine(
+            transactionDao.getExpensesBySubcategoryAndDateRange(subcategoryId, startDate, endDate),
+            accountDao.getAll(),
+            subcategoryDao.getAll()
+        ) { transactions, accounts, subcategories ->
+            transactions.map { t ->
+                val account = accounts.find { it.id == t.accountId }
+                val targetAccount = t.targetAccountId?.let { id -> accounts.find { it.id == id } }
+                val subcategory = t.subcategoryId?.let { id -> subcategories.find { it.id == id } }
+                TransactionWithDetails(
+                    transaction = t,
+                    accountName = account?.name ?: "-",
+                    targetAccountName = targetAccount?.name,
+                    subcategoryName = subcategory?.name
+                )
+            }
         }
     }
 
@@ -67,6 +92,7 @@ class TransactionRepository(
 }
 
 data class CategoryExpenseItem(
+    val subcategoryId: Long,
     val subcategoryName: String,
     val amount: Double
 )

@@ -98,6 +98,8 @@
     <string name="reports_total_expenses">Total expenses: %.2f UAH</string>
     <string name="reports_total_income">Total income: %.2f UAH</string>
     <string name="reports_no_data">No data for selected period</string>
+    <string name="reports_category_expenses_title">Expenses: %1$s</string>
+    <string name="reports_category_expenses_empty">No transactions for selected period</string>
     
     <!-- Backup -->
     <string name="backup_export">Export</string>

@@ -1,5 +1,6 @@
 package com.sh.mycash.ui.screens.reports
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,7 @@ import com.sh.mycash.data.repository.TransactionRepository
 
 @Composable
 fun ReportsScreen(
+    onCategoryExpenseClick: (subcategoryId: Long, startDate: Long, endDate: Long) -> Unit = { _, _, _ -> },
     viewModel: ReportsViewModel = viewModel(
         factory = ReportsViewModelFactory(
             TransactionRepository(
@@ -140,8 +142,12 @@ fun ReportsScreen(
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(expensesByCategory, key = { it.subcategoryName }) { item ->
-                        CategoryExpenseCard(item = item, totalExpenses = totalExpenses)
+                    items(expensesByCategory, key = { it.subcategoryId }) { item ->
+                        CategoryExpenseCard(
+                            item = item,
+                            totalExpenses = totalExpenses,
+                            onClick = { onCategoryExpenseClick(item.subcategoryId, viewModel.getCurrentMonthRange().first, viewModel.getCurrentMonthRange().second) }
+                        )
                     }
                 }
             }
@@ -150,10 +156,16 @@ fun ReportsScreen(
 }
 
 @Composable
-private fun CategoryExpenseCard(item: CategoryExpenseItem, totalExpenses: Double) {
+private fun CategoryExpenseCard(
+    item: CategoryExpenseItem,
+    totalExpenses: Double,
+    onClick: () -> Unit = {}
+) {
     val percent = if (totalExpenses > 0) (item.amount / totalExpenses * 100).toInt() else 0
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
         ),

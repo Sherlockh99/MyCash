@@ -46,6 +46,20 @@ interface TransactionDao {
 
     @Query(
         """
+        SELECT * FROM transactions 
+        WHERE type = 'EXPENSE' AND subcategoryId = :subcategoryId 
+        AND date >= :startDate AND date <= :endDate 
+        ORDER BY date DESC
+        """
+    )
+    fun getExpensesBySubcategoryAndDateRange(
+        subcategoryId: Long,
+        startDate: Long,
+        endDate: Long
+    ): Flow<List<TransactionEntity>>
+
+    @Query(
+        """
         SELECT COALESCE(SUM(amount), 0) FROM transactions 
         WHERE type = 'EXPENSE' AND date >= :startDate AND date <= :endDate
         """

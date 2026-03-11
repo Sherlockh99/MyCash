@@ -19,6 +19,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -28,7 +30,10 @@ import com.sh.mycash.ui.screens.accounts.AccountsScreen
 import com.sh.mycash.ui.screens.categories.CategoriesScreen
 import com.sh.mycash.ui.screens.dashboard.DashboardScreen
 import com.sh.mycash.ui.screens.planning.PlanningScreen
+import com.sh.mycash.ui.screens.reports.CategoryExpensesScreen
+import com.sh.mycash.ui.screens.reports.CATEGORY_EXPENSES_ROUTE
 import com.sh.mycash.ui.screens.reports.ReportsScreen
+import com.sh.mycash.ui.screens.reports.categoryExpensesRoute
 import com.sh.mycash.ui.screens.settings.SettingsScreen
 import com.sh.mycash.ui.screens.transactions.TransactionsScreen
 
@@ -104,6 +109,24 @@ fun MyCashNavGraph(
             composable(NavRoutes.CATEGORIES) {
                 CategoriesScreen(onBackClick = { navController.popBackStack() })
             }
+            composable(
+                route = CATEGORY_EXPENSES_ROUTE,
+                arguments = listOf(
+                    navArgument("subcategoryId") { type = NavType.LongType },
+                    navArgument("startDate") { type = NavType.LongType },
+                    navArgument("endDate") { type = NavType.LongType }
+                )
+            ) { backStackEntry ->
+                val subcategoryId = backStackEntry.arguments?.getLong("subcategoryId") ?: 0L
+                val startDate = backStackEntry.arguments?.getLong("startDate") ?: 0L
+                val endDate = backStackEntry.arguments?.getLong("endDate") ?: 0L
+                CategoryExpensesScreen(
+                    subcategoryId = subcategoryId,
+                    startDate = startDate,
+                    endDate = endDate,
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
             composable(NavItem.Transactions.route) {
                 TransactionsScreen()
             }
@@ -111,7 +134,11 @@ fun MyCashNavGraph(
                 PlanningScreen()
             }
             composable(NavItem.Reports.route) {
-                ReportsScreen()
+                ReportsScreen(
+                    onCategoryExpenseClick = { subId, start, end ->
+                        navController.navigate(categoryExpensesRoute(subId, start, end))
+                    }
+                )
             }
             composable(NavItem.Settings.route) {
                 SettingsScreen()

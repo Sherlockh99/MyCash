@@ -98,6 +98,8 @@
     <string name="reports_total_expenses">Всього витрат: %.2f грн</string>
     <string name="reports_total_income">Всього доходів: %.2f грн</string>
     <string name="reports_no_data">Немає даних за обраний період</string>
+    <string name="reports_category_expenses_title">Витрати: %1$s</string>
+    <string name="reports_category_expenses_empty">Немає операцій за обраний період</string>
     
     <!-- Backup -->
     <string name="backup_export">Експорт</string>

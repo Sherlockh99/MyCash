@@ -74,6 +74,8 @@ class ReportsViewModel(
         }
     }
 
+    fun getCurrentMonthRange(): Pair<Long, Long> = monthRange(_selectedYear.value, _selectedMonth.value)
+
     private fun monthRange(year: Int, month: Int): Pair<Long, Long> {
         val c = Calendar.getInstance()
         c.set(year, month - 1, 1, 0, 0, 0)
