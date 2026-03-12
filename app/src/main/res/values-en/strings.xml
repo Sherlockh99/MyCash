@@ -32,7 +32,7 @@
     <!-- Accounts -->
     <string name="screen_accounts">Accounts</string>
     <string name="accounts_empty">No accounts. Add the first one.</string>
-    <string name="accounts_balance_format">%.2f UAH</string>
+    <string name="accounts_balance_format">%s UAH</string>
     <string name="accounts_add_title">New account</string>
     <string name="accounts_edit_title">Edit account</string>
     <string name="accounts_delete_title">Delete account?</string>
@@ -44,8 +44,9 @@
     <string name="accounts_initial_balance_hint">0 for new card</string>
     <string name="accounts_credit_limit">Credit limit</string>
     <string name="accounts_credit_limit_hint">Empty = regular account</string>
-    <string name="accounts_debt_format">Debt: %.2f UAH</string>
-    <string name="accounts_available_format">Available: %.2f UAH</string>
+    <string name="accounts_debt_format">Debt: %s UAH</string>
+    <string name="accounts_available_format">Available: %s UAH</string>
+    <string name="accounts_zero_debt_great">Well done!</string>
     
     <!-- Categories -->
     <string name="screen_categories">Categories</string>
@@ -102,8 +103,8 @@
     <string name="reports_expenses_by_category">Expenses by category</string>
     <string name="reports_total_balance">Balance:</string>
     <string name="reports_currency">UAH</string>
-    <string name="reports_total_expenses">Total expenses: %.2f UAH</string>
-    <string name="reports_total_income">Total income: %.2f UAH</string>
+    <string name="reports_total_expenses">Total expenses: %s UAH</string>
+    <string name="reports_total_income">Total income: %s UAH</string>
     <string name="reports_no_data">No data for selected period</string>
     <string name="reports_category_expenses_title">Expenses: %1$s</string>
     <string name="reports_category_expenses_empty">No transactions for selected period</string>

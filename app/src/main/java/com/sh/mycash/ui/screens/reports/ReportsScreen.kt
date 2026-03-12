@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -122,13 +123,13 @@ fun ReportsScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = stringResource(R.string.reports_total_income, totalIncome),
+                        text = stringResource(R.string.reports_total_income, balanceFormat.format(totalIncome)),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = stringResource(R.string.reports_total_expenses, totalExpenses),
+                        text = stringResource(R.string.reports_total_expenses, balanceFormat.format(totalExpenses)),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.error
                     )
@@ -180,6 +181,13 @@ private fun CategoryExpenseCard(
     totalExpenses: Double,
     onClick: () -> Unit = {}
 ) {
+    val locale = LocalConfiguration.current.locales[0]
+    val numberFormat = remember(locale) {
+        NumberFormat.getNumberInstance(locale).apply {
+            minimumFractionDigits = 2
+            maximumFractionDigits = 2
+        }
+    }
     val percent = if (totalExpenses > 0) (item.amount / totalExpenses * 100).toInt() else 0
     Card(
         modifier = Modifier
@@ -210,7 +218,7 @@ private fun CategoryExpenseCard(
                 )
             }
             Text(
-                text = String.format("%.2f грн", item.amount),
+                text = numberFormat.format(item.amount) + " " + stringResource(R.string.reports_currency),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.error
             )

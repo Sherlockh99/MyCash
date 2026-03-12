@@ -32,10 +32,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import java.text.NumberFormat
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -155,6 +158,13 @@ private fun AccountCard(
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
 ) {
+    val locale = LocalConfiguration.current.locales[0]
+    val numberFormat = remember(locale) {
+        NumberFormat.getNumberInstance(locale).apply {
+            minimumFractionDigits = 2
+            maximumFractionDigits = 2
+        }
+    }
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -181,10 +191,29 @@ private fun AccountCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
-                    text = stringResource(R.string.accounts_balance_format, accountWithBalance.balance),
+                    text = stringResource(R.string.accounts_balance_format, numberFormat.format(accountWithBalance.balance)),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
+                if (accountWithBalance.creditLimit != null) {
+                    when {
+                        accountWithBalance.debt > 0 -> Text(
+                            text = stringResource(R.string.accounts_debt_format, numberFormat.format(accountWithBalance.debt)),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        accountWithBalance.ownMoneyOnCard > 0 -> Text(
+                            text = stringResource(R.string.accounts_available_format, numberFormat.format(accountWithBalance.ownMoneyOnCard)),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        else -> Text(
+                            text = stringResource(R.string.accounts_zero_debt_great),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
             }
             Row {
                 IconButton(onClick = onEditClick) {

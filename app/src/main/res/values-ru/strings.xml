@@ -32,7 +32,7 @@
     <!-- Accounts -->
     <string name="screen_accounts">Счета</string>
     <string name="accounts_empty">Нет счетов. Добавьте первый.</string>
-    <string name="accounts_balance_format">%.2f грн</string>
+    <string name="accounts_balance_format">%s грн</string>
     <string name="accounts_add_title">Новый счёт</string>
     <string name="accounts_edit_title">Редактировать счёт</string>
     <string name="accounts_delete_title">Удалить счёт?</string>
@@ -44,8 +44,9 @@
     <string name="accounts_initial_balance_hint">0 для новой карты</string>
     <string name="accounts_credit_limit">Кредитный лимит</string>
     <string name="accounts_credit_limit_hint">Пусто = обычный счёт</string>
-    <string name="accounts_debt_format">Долг: %.2f грн</string>
-    <string name="accounts_available_format">Доступно: %.2f грн</string>
+    <string name="accounts_debt_format">Долг: %s грн</string>
+    <string name="accounts_available_format">Доступно: %s грн</string>
+    <string name="accounts_zero_debt_great">Ты молодец!</string>
     
     <!-- Categories -->
     <string name="screen_categories">Категории</string>
@@ -102,8 +103,8 @@
     <string name="reports_expenses_by_category">Расходы по категориям</string>
     <string name="reports_total_balance">Баланс:</string>
     <string name="reports_currency">грн</string>
-    <string name="reports_total_expenses">Всего расходов: %.2f грн</string>
-    <string name="reports_total_income">Всего доходов: %.2f грн</string>
+    <string name="reports_total_expenses">Всего расходов: %s грн</string>
+    <string name="reports_total_income">Всего доходов: %s грн</string>
     <string name="reports_no_data">Нет данных за выбранный период</string>
     <string name="reports_category_expenses_title">Расходы: %1$s</string>
     <string name="reports_category_expenses_empty">Нет операций за выбранный период</string>
