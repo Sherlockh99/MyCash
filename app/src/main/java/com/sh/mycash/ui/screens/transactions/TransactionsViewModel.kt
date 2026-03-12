@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -32,9 +33,22 @@ class TransactionsViewModel(
     val expenseSubcategories = categoryRepository.getCategoriesWithSubcategories(CategoryType.EXPENSE)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    val transactions: StateFlow<List<TransactionWithDetails>> = transactionRepository
-        .getAllWithDetails()
+    private val _selectedAccountId = MutableStateFlow<Long?>(null)
+    val selectedAccountId: StateFlow<Long?> = _selectedAccountId.asStateFlow()
+
+    val transactions: StateFlow<List<TransactionWithDetails>> = _selectedAccountId
+        .flatMapLatest { accountId ->
+            if (accountId == null) {
+                transactionRepository.getAllWithDetails()
+            } else {
+                transactionRepository.getByAccountIdWithDetails(accountId)
+            }
+        }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    fun setSelectedAccount(accountId: Long?) {
+        _selectedAccountId.value = accountId
+    }
 
     private val _showAddDialog = MutableStateFlow(false)
     val showAddDialog: StateFlow<Boolean> = _showAddDialog.asStateFlow()

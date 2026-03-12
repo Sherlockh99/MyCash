@@ -64,6 +64,7 @@
     
     <!-- Transactions -->
     <string name="transactions_empty">Немає операцій. Додайте першу.</string>
+    <string name="transactions_filter_all">Всі рахунки</string>
     <string name="transactions_add_title">Нова операція</string>
     <string name="transactions_edit_title">Редагувати операцію</string>
     <string name="transactions_delete_title">Видалити операцію?</string>

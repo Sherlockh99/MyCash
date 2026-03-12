@@ -1,10 +1,13 @@
 package com.sh.mycash.ui.screens.transactions
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +20,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -70,6 +74,7 @@ fun TransactionsScreen(
 ) {
     val transactions by viewModel.transactions.collectAsState()
     val accounts by viewModel.accounts.collectAsState()
+    val selectedAccountId by viewModel.selectedAccountId.collectAsState()
     val incomeSubcategories by viewModel.incomeSubcategories.collectAsState()
     val expenseSubcategories by viewModel.expenseSubcategories.collectAsState()
     val showDialog by viewModel.showAddDialog.collectAsState()
@@ -78,11 +83,35 @@ fun TransactionsScreen(
 
     Scaffold(
         topBar = {
-            Text(
-                text = stringResource(R.string.screen_transactions),
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(16.dp)
-            )
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    text = stringResource(R.string.screen_transactions),
+                    style = MaterialTheme.typography.titleLarge
+                )
+                if (accounts.isNotEmpty()) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                            .horizontalScroll(rememberScrollState()),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        FilterChip(
+                            selected = selectedAccountId == null,
+                            onClick = { viewModel.setSelectedAccount(null) },
+                            label = { Text(stringResource(R.string.transactions_filter_all)) }
+                        )
+                        accounts.forEach { account ->
+                            FilterChip(
+                                selected = selectedAccountId == account.id,
+                                onClick = { viewModel.setSelectedAccount(account.id) },
+                                label = { Text(account.name) }
+                            )
+                        }
+                    }
+                }
+            }
         },
         floatingActionButton = {
             FloatingActionButton(

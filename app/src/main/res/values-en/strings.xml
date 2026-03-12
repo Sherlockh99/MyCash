@@ -64,6 +64,7 @@
     
     <!-- Transactions -->
     <string name="transactions_empty">No transactions. Add the first one.</string>
+    <string name="transactions_filter_all">All accounts</string>
     <string name="transactions_add_title">New transaction</string>
     <string name="transactions_edit_title">Edit transaction</string>
     <string name="transactions_delete_title">Delete transaction?</string>

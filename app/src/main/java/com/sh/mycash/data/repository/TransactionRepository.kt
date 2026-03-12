@@ -16,9 +16,15 @@ class TransactionRepository(
     private val subcategoryDao: SubcategoryDao
 ) {
 
-    fun getAllWithDetails(): Flow<List<TransactionWithDetails>> {
+    fun getAllWithDetails(): Flow<List<TransactionWithDetails>> =
+        getWithDetailsInternal(transactionDao.getAll())
+
+    fun getByAccountIdWithDetails(accountId: Long): Flow<List<TransactionWithDetails>> =
+        getWithDetailsInternal(transactionDao.getByAccountId(accountId))
+
+    private fun getWithDetailsInternal(transactionsFlow: Flow<List<TransactionEntity>>): Flow<List<TransactionWithDetails>> {
         return combine(
-            transactionDao.getAll(),
+            transactionsFlow,
             accountDao.getAll(),
             subcategoryDao.getAll()
         ) { transactions, accounts, subcategories ->
